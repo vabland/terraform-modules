@@ -1,4 +1,4 @@
-name: "terraform-custom-destroy"
+name: "terraform-custom"
 
 on:
   workflow_dispatch:
@@ -8,7 +8,6 @@ on:
         required: true
         description: Choose Environment
         options:
-        - general
         - dev
         - prod
       aws-region:
@@ -17,20 +16,20 @@ on:
         description: Make a choice
         options:
         - us-east-1
-      destroy-terraform:
+      apply-terraform:
         type: boolean
         required: true
-        description: 'Terraform Auto Destroy'
-        default: False
+        description: 'Terraform Auto Apply'
+        default: false
 
 jobs:
-  terraform-custom-destroy:
-    uses: vabland/actions-templates/.github/workflows/terraform-destroy-workflow.yml@main
+  terraform-custom:
+    uses: vabland/actions-templates/.github/workflows/terraform-build-workflow.yml@main
     with:
-      domain-name: change_template_domain_name
+      domain-name: terraform-template
       environment: ${{ inputs.environment }}
       aws-region: ${{ inputs.aws-region }}
-      destroy-terraform: ${{ inputs.destroy-terraform }}
+      apply-terraform: ${{ inputs.apply-terraform }}
     secrets:
       aws-env-access-key: ${{ secrets[format('AWS_{0}_ACCESS_KEY', inputs.environment)] }}
       aws-env-secret-key: ${{ secrets[format('AWS_{0}_SECRET_KEY', inputs.environment)] }}

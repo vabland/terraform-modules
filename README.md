@@ -7,6 +7,24 @@ Change this README for your project informations.
 ## Setup Project
 Run: `./setup-project.sh`
 
+## Rename Project
+Change all **terraform-template** refereces to this project name using **kebab-case** format.
+Following is all files to be changed:
+- README.md
+- .github/workflows/terraform-build.yml
+- .github/workflows/terraform-check.yml
+- .github/workflows/terraform-custom.yml
+- .github/workflows/terraform-destroy.yml
+  
+## Receiving Template Updates
+
+To receive updates from this template you need to add another remote, fetch it and merge.
+```
+git remote add template git@github.com:vabland/terraform-template.git
+git fetch --all
+git merge template/main --allow-unrelated-histories
+```
+
 ## Requirements
 
 - **terraform** = 1.3.3
