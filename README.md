@@ -1,13 +1,11 @@
 # vabland: terraform-template
 
 ## Description
-Template description.
+This repository is to be used as template for terraform projects.
+Change this README for your project informations.
 
 ## Setup Project
-Run:
-```
-./setup-project.sh
-```
+Run: `./setup-project.sh`
 
 ## Requirements
 
