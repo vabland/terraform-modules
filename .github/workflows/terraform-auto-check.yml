@@ -1,19 +1,20 @@
-name: "terraform-custom-build"
+name: "terraform-auto-build"
 
 on:
-  push:
-    branches: [ main ]
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  terraform-custom-build:
+  terraform-auto-build:
     uses: vabland/actions-templates/.github/workflows/terraform-build-workflow.yml@main
     with:
       domain-name: change_template_domain_name
       environment: dev
       aws-region: us-east-1
-      apply-terraform: false
+      apply-terraform: true
     secrets:
-      aws-env-access-key: ${{ secrets[format('AWS_{0}_ACCESS_KEY', inputs.environment)] }}
-      aws-env-secret-key: ${{ secrets[format('AWS_{0}_SECRET_KEY', inputs.environment)] }}
+      aws-env-access-key: ${{ secrets.AWS_DEV_ACCESS_KEY }}
+      aws-env-secret-key: ${{ secrets.AWS_DEV_SECRET_KEY }}
       aws-general-access-key: ${{ secrets.AWS_GENERAL_ACCESS_KEY }}
       aws-general-secret-key: ${{ secrets.AWS_GENERAL_SECRET_KEY }}
