@@ -16,7 +16,7 @@ Run: `./setup-project.sh`
 
 ## Dependencies
 
-Depends on [vabland/github-workflows](https://github.com/vabland/github-workflows) for it's pipeline.
+Depends on [vabland/pipelines](https://github.com/vabland/pipelines) for it's pipeline.
 
 ## Github Actions Secrets Configuration
 
