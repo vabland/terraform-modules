@@ -11,6 +11,7 @@ Run: `./setup-project.sh`
 Change all **terraform-template** refereces to this project name using **kebab-case** format.
 Following is all files to be changed:
 - README.md
+- package.json
 - .github/workflows/terraform-build.yml
 - .github/workflows/terraform-check.yml
 - .github/workflows/terraform-custom.yml
