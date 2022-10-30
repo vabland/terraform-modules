@@ -1,14 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-RED='\033[0;31m'
-NC='\033[0m' # No Color
-
-if ! head -1 "$1" | grep -qE "^(FEAT|FIX|BUILD|STYLE|DOCS|REFACTOR|TEST|revert)(\(.+?\))?: .{1,}$"; then
-  echo "${RED}Aborting commit. Your commit summary isn't follow conventional commits specification.${NC}" >&2
-  exit 1
-fi
-if ! head -1 "$1" | grep -qE "^.{1,50}$"; then
-  echo "${RED}Aborting commit. Your commit summary is too long (it should be max 50 characters).${NC}" >&2
-  exit 1
-fi
+./scripts/check-commit-summary.sh

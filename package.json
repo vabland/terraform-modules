@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "test": "terraform -chdir=terraform fmt -recursive -diff -check",
-    "fix": "terraform -chdir=terraform fmt -recursive",
+    "terraform-check": "terraform -chdir=terraform fmt -recursive -diff -check",
+    "terraform-fix": "terraform -chdir=terraform fmt -recursive",
     "prepare": "husky install"
   },
   "devDependencies": {

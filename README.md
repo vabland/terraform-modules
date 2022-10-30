@@ -1,8 +1,13 @@
 # vabland: terraform-template
 
-## Description:
+## Description
 Template description.
 
+## Setup Project
+Run:
+```
+./setup-project.sh
+```
 
 ## Requirements
 
