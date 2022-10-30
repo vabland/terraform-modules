@@ -3,6 +3,7 @@ RED='\033[0;31m' # Red Color
 GREEN='\033[0;32m' # Green Color
 NC='\033[0m' # No Color
 CYAN='\033[0;36m' # Cyan Color
+YELLOW='\033[0;33m' # Yellow Color
 
 VERSION_PATCH_REGEX="[0-9]{1,4}\.[0-9]{1,4}\.[0-9]{1,4}"
 VERSION_MINOR_REGEX="[0-9]{1,4}\.[0-9]{1,4}"
@@ -12,6 +13,11 @@ FILTER_REGEX="[0-9\.]{1,}"
 function echoNormal() {
   echo -e "${NC}$1${NC}"
 }
+
+function echoWarning() {
+  echo -e "> ${YELLOW}$1${NC}"
+}
+
 
 function echoTitle() {
   echo -e "${CYAN}$1${NC}"

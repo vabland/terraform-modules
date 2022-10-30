@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-./scripts/check-commit-summary.sh
+./scripts/check-commit-summary.sh $1
