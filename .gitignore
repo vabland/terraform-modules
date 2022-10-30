@@ -13,3 +13,5 @@ terraform.rc
 **/output/
 .DS_Store
 .vs/*
+node_modules/
+node_modules/*
