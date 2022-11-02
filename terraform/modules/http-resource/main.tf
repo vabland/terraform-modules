@@ -30,41 +30,25 @@ data "aws_apigatewayv2_api" "this" {
 }
 
 ######################################################## lambda
-data "aws_iam_role" "this" {
-  provider = aws.environment
+module "lambda" {
+  source = "../lambda"
 
-  name = local.lambda_exec_role_name
-}
+  providers = {
+    aws.general     = aws.general
+    aws.environment = aws.environment
+  }
 
-resource "aws_lambda_function" "this" {
-  provider = aws.environment
+  project_name = var.project_name
+  environment  = var.environment
+  lambda_name  = var.resource_name
+  zip_file     = var.zip_file
 
-  function_name = local.lambda_name
-  role          = data.aws_iam_role.this.arn
-
-  filename = var.zip_file
-  handler  = "index.handler"
-
-  environment {
+  env_variables = [{
     variables = {
-      environment = var.environment
+      environment          = var.environment,
+      http_api_gateway_url = data.aws_apigatewayv2_api.this.api_endpoint
     }
-  }
-
-  runtime = "nodejs16.x"
-
-  tracing_config {
-    mode = "Active"
-  }
-
-  tags = {
-    Project     = var.project_name
-    Environment = var.environment
-  }
-
-  lifecycle {
-    ignore_changes = [tags]
-  }
+  }]
 }
 
 resource "aws_apigatewayv2_integration" "this" {
@@ -74,7 +58,7 @@ resource "aws_apigatewayv2_integration" "this" {
   integration_type = "AWS_PROXY"
 
   integration_method = "POST"
-  integration_uri    = aws_lambda_function.this.invoke_arn
+  integration_uri    = module.lambda.invoke_arn
 
   connection_type = "INTERNET"
 }
