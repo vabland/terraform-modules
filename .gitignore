@@ -1,0 +1,17 @@
+**/.terraform/*
+**/*.lock.hcl
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+*.zip
+**/output/
+.DS_Store
+.vs/*
+node_modules/
+node_modules/*

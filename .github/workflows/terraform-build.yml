@@ -1,0 +1,20 @@
+name: "terraform-build"
+
+on:
+  push:
+    tags:
+       - "v*"
+
+jobs:
+  terraform-build:
+    uses: vabland/actions-templates/.github/workflows/terraform-build-workflow.yml@main
+    with:
+      domain-name: terraform-template
+      environment: dev
+      aws-region: us-east-1
+      apply-terraform: true
+    secrets:
+      aws-env-access-key: ${{ secrets[format('AWS_{0}_ACCESS_KEY', inputs.environment)] }}
+      aws-env-secret-key: ${{ secrets[format('AWS_{0}_SECRET_KEY', inputs.environment)] }}
+      aws-general-access-key: ${{ secrets.AWS_GENERAL_ACCESS_KEY }}
+      aws-general-secret-key: ${{ secrets.AWS_GENERAL_SECRET_KEY }}
