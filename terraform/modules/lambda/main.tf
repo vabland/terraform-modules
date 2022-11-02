@@ -28,8 +28,9 @@ resource "aws_lambda_function" "this" {
   function_name = local.lambda_name
   role          = data.aws_iam_role.this.arn
 
-  filename = var.zip_file
-  handler  = "index.handler"
+  filename         = var.zip_file
+  source_code_hash = var.zip_source_code_hash
+  handler          = "index.handler"
 
   dynamic "environment" {
     for_each = var.env_variables

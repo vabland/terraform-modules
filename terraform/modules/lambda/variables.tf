@@ -18,6 +18,11 @@ variable "zip_file" {
   description = "Path to the zipfile to be deployed"
 }
 
+variable "zip_source_code_hash" {
+  type        = string
+  description = "Source code hash to check if changed"
+}
+
 variable "env_variables" {
   type = list(object({
     variables = map(string)
