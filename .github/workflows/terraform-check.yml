@@ -11,7 +11,7 @@ jobs:
   terraform-check:
     uses: vabland/actions-templates/.github/workflows/terraform-build-workflow.yml@main
     with:
-      domain-name: terraform-template
+      domain-name: terraform-modules
       environment: dev
       aws-region: us-east-1
       apply-terraform: false

@@ -1,4 +1,4 @@
-# vabland: terraform-template
+# vabland: terraform-modules
 
 ## Description
 This repository is to be used as template for terraform projects.
@@ -8,7 +8,7 @@ Change this README for your project informations.
 Run: `./setup-project.sh`
 
 ## Rename Project
-Change all **terraform-template** refereces to this project name using **kebab-case** format.
+Change all **terraform-modules** refereces to this project name using **kebab-case** format.
 Following is all files to be changed:
 - README.md
 - package.json
@@ -21,7 +21,7 @@ Following is all files to be changed:
 
 To receive updates from this template you need to add another remote, fetch it and merge.
 ```
-git remote add template git@github.com:vabland/terraform-template.git
+git remote add template git@github.com:vabland/terraform-modules.git
 git fetch --all
 git merge template/main --allow-unrelated-histories
 ```

@@ -26,7 +26,7 @@ jobs:
   terraform-custom:
     uses: vabland/actions-templates/.github/workflows/terraform-build-workflow.yml@main
     with:
-      domain-name: terraform-template
+      domain-name: terraform-modules
       environment: ${{ inputs.environment }}
       aws-region: ${{ inputs.aws-region }}
       apply-terraform: ${{ inputs.apply-terraform }}

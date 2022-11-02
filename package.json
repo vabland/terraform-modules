@@ -1,5 +1,5 @@
 {
-  "name": "terraform-template",
+  "name": "terraform-modules",
   "scripts": {
     "terraform-check": "terraform -chdir=terraform fmt -recursive -diff -check",
     "terraform-fix": "terraform -chdir=terraform fmt -recursive",
