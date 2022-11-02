@@ -1,21 +1,13 @@
 # vabland: terraform-modules
 
 ## Description
-This repository is to be used as template for terraform projects.
-Change this README for your project informations.
+This repository contains reusable terraform modules.
 
 ## Setup Project
 Run: `./setup-project.sh`
 
-## Rename Project
-Change all **terraform-modules** refereces to this project name using **kebab-case** format.
-Following is all files to be changed:
-- README.md
-- package.json
-- .github/workflows/terraform-build.yml
-- .github/workflows/terraform-check.yml
-- .github/workflows/terraform-custom.yml
-- .github/workflows/terraform-destroy.yml
+## Reusable Modules
+- **http-resource**: Creates a lambda and associate its resource name and http method to HTTP Api Gateway
   
 ## Receiving Template Updates
 
@@ -32,17 +24,3 @@ git merge template/main --allow-unrelated-histories
 - **aws cli** = 2.8.*
 - **node** = 16.*
 - **npm** = 8.*
-
-## Dependencies
-
-Depends on [vabland/pipelines](https://github.com/vabland/pipelines) for it's pipeline.
-
-## Github Actions Secrets Configuration
-
-It is needed to setup at github repository (or company) secrets the following variables:
-- AWS_DEV_ACCESS_KEY
-- AWS_DEV_SECRET_KEY
-- AWS_PROD_ACCESS_KEY
-- AWS_PROD_SECRET_KEY
-- AWS_GENERAL_ACCESS_KEY
-- AWS_GENERAL_SECRET_KEY
