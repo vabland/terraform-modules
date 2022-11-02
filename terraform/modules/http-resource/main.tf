@@ -12,8 +12,6 @@ terraform {
 
 locals {
   http_api_gateway_ssm_api_id_key = format("%s-http-api-gateway-api-id", var.project_name)
-  lambda_exec_role_name           = format("%s-lambda-exec-role", var.project_name)
-  lambda_name                     = format("%s-%s-%s", var.project_name, var.environment, var.resource_name)
   route_key                       = format("%s /%s", upper(var.http_method), var.resource_name)
 }
 
@@ -29,28 +27,6 @@ data "aws_apigatewayv2_api" "this" {
   api_id = data.aws_ssm_parameter.this.value
 }
 
-######################################################## lambda
-module "lambda" {
-  source = "../lambda"
-
-  providers = {
-    aws.general     = aws.general
-    aws.environment = aws.environment
-  }
-
-  project_name = var.project_name
-  environment  = var.environment
-  lambda_name  = var.resource_name
-  zip_file     = var.zip_file
-
-  env_variables = [{
-    variables = {
-      environment          = var.environment,
-      http_api_gateway_url = data.aws_apigatewayv2_api.this.api_endpoint
-    }
-  }]
-}
-
 resource "aws_apigatewayv2_integration" "this" {
   provider = aws.environment
 
@@ -58,7 +34,7 @@ resource "aws_apigatewayv2_integration" "this" {
   integration_type = "AWS_PROXY"
 
   integration_method = "POST"
-  integration_uri    = module.lambda.invoke_arn
+  integration_uri    = var.lambda_invoke_arn
 
   connection_type = "INTERNET"
 }
@@ -76,7 +52,7 @@ resource "aws_lambda_permission" "this" {
   provider = aws.environment
 
   action        = "lambda:InvokeFunction"
-  function_name = local.lambda_name
+  function_name = var.lambda_function_name
   principal     = "apigateway.amazonaws.com"
 
   # The /*/*/* part allows invocation from any stage, method and resource path
